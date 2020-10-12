@@ -31,15 +31,16 @@ class UserController(private val userRepository: UserRepository) {
     }
 
     @GetMapping("/getUserByMail")
-    fun getUserByMail(@Valid @RequestBody mail: Map<String,String>): ResponseEntity<User> {
-        return userRepository.findByMail(mail["mail"]).map { user ->
+    fun getUserByMail(@Valid @RequestBody mail: Any):ResponseEntity<User> {
+        println(mail)
+        println("505")
+        return userRepository.findByMail(mail.toString()).map { user ->
             ResponseEntity.ok(user)
         }.orElse(ResponseEntity.notFound().build())
     }
-
     @GetMapping("/getUserByUsername")
-    fun getUserByUsername(@Valid @RequestBody username: Map<String,String>): ResponseEntity<User> {
-        return userRepository.findByUsername(username["username"]).map { user ->
+    fun getUserByUsername(@Valid @RequestBody username: Any): ResponseEntity<User> {
+        return userRepository.findByUsername(username.toString()).map { user ->
             ResponseEntity.ok(user)
         }.orElse(ResponseEntity.notFound().build())
     }
