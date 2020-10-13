@@ -51,7 +51,7 @@ class UserController(private val userRepository: UserRepository) {
 
         return userRepository.findById(idUser).map { existingUser ->
             val updatedUser: User = existingUser
-                    .copy(username = newUser.username, mail = newUser.mail, id = existingUser.id, birthDate = existingUser.birthDate, career = newUser.career, role = newUser.role, name = newUser.name, password = newUser.password)
+                    .copy(username = newUser.username, mail = newUser.mail, id = existingUser.id, birthDate = newUser.birthDate, career = newUser.career, role = newUser.role, name = newUser.name, password = newUser.password)
             ResponseEntity.ok().body(userRepository.save(updatedUser))
         }.orElse(ResponseEntity.notFound().build())
 
