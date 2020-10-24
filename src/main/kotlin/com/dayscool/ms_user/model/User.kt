@@ -1,6 +1,6 @@
 package com.dayscool.ms_user.model
-import java.time.LocalDate
 import javax.persistence.*
+import java.time.LocalDate
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
