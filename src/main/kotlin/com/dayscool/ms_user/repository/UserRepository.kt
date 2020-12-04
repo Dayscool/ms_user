@@ -10,4 +10,5 @@ import java.util.*
 interface UserRepository : JpaRepository<User, Long> {
     fun findByMail(mail: String?): Optional<User>
     fun findByUsername(username: String?): Optional<User>
+    fun findByRole(role: String?): Optional<List<User>>
 }

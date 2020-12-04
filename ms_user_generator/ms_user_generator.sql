@@ -32,7 +32,6 @@ CREATE TABLE IF NOT EXISTS `ms_user_db`.`user` (
   `role` VARCHAR(45) NULL,
   `name` VARCHAR(80) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `entry_time` DATETIME NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `uuid_user_UNIQUE` (`id` ASC) VISIBLE,
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE)

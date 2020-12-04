@@ -1,5 +1,6 @@
 package com.dayscool.ms_user.controller
 
+import com.dayscool.ms_user.model.DataTeacher
 import com.dayscool.ms_user.model.User
 import com.dayscool.ms_user.repository.UserRepository
 import org.springframework.http.HttpStatus
@@ -32,11 +33,22 @@ class UserController(private val userRepository: UserRepository) {
 
     @GetMapping("/getUserByMail")
     fun getUserByMail(@Valid @RequestBody mail: Any):ResponseEntity<User> {
-        println(mail)
-        println("505")
         return userRepository.findByMail(mail.toString()).map { user ->
             ResponseEntity.ok(user)
         }.orElse(ResponseEntity.notFound().build())
+    }
+    @GetMapping("/getTeachers")
+    fun getTeachers():List<DataTeacher>{
+        val teacherListOut = mutableListOf<DataTeacher>()
+        val dataTeacher:List<User> = userRepository.findByRole("Profesor").get()
+        for (teacher in dataTeacher){
+            val tempUser = teacher.name
+            val tempMail = teacher.mail
+            val tempCareer = teacher.career
+            val tempTeacher = DataTeacher(tempUser,tempMail,tempCareer)
+            teacherListOut.add(tempTeacher);
+        }
+        return teacherListOut
     }
     @GetMapping("/getUserByUsername")
     fun getUserByUsername(@Valid @RequestBody username: Any): ResponseEntity<User> {
