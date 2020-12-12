@@ -21,7 +21,7 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Build image
-      run: docker build . --file Dockerfile --tag draco1006/nauth
+      run: docker build . --file Dockerfile --tag draco1006/users
 
     - name: Log into registry
       run: echo "${{ secrets.DOCKERPSSW }}" | docker login -u draco1006 --password-stdin
@@ -30,4 +30,4 @@ jobs:
       run: |
           echo nauth
           echo latest
-          docker push draco1006/nauth:latest
+          docker push draco1006/users:latest
